@@ -47,10 +47,10 @@ class ChatScreen extends StatelessWidget {
                   stream: FirebaseFirestore.instance
                       .collection("users")
                       .doc(currentUser.uid)
-                      .collection('message')
+                      .collection('messages')
                       .doc(friendId)
-                      .collection("chats")
-                      .orderBy('date', descending: true)
+                      .collection('chats')
+                      .orderBy("date", descending: true)
                       .snapshots(),
                   builder: (context, AsyncSnapshot snapshot) {
                     if (snapshot.hasData) {
@@ -71,7 +71,7 @@ class ChatScreen extends StatelessWidget {
                                 isMe: isMe);
                           });
                     }
-                    return Container();
+                    return Center(child: CircularProgressIndicator());
                   }),
             )),
             MessageTextField(currentUser.uid, friendId)
